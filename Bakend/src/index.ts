@@ -7,7 +7,7 @@ import userRoutes from './rotes/auth'
 import cookieParser from 'cookie-parser'
 import path from 'path';
 import {v2 as cloudinary} from 'cloudinary'
-import myHotelsRoutes from '../src/rotes/my-hotels'
+import myHotelsRoutes from './rotes/my-hotels'
 
 cloudinary.config({
   cloud_name:process.env.CLOUDINARY_CLOUD_NAME,
