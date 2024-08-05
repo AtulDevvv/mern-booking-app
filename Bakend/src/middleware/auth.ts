@@ -21,7 +21,7 @@ const verifyToken=(req:Request,res:Response,next:NextFunction)=>{
         next();
     }
     catch(error){
-        return res.status(404).json({message:"unauthorized"});
+        return res.status(401).json({message:"unauthorized"});
     }
 
 

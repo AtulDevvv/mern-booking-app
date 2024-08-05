@@ -6,6 +6,15 @@ import userRouter from './rotes/users'
 import userRoutes from './rotes/auth'
 import cookieParser from 'cookie-parser'
 import path from 'path';
+import {v2 as cloudinary} from 'cloudinary'
+import myHotelsRoutes from '../src/rotes/my-hotels'
+
+cloudinary.config({
+  cloud_name:process.env.CLOUDINARY_CLOUD_NAME,
+  api_key:process.env.CLOUDINARY_API_KEY,
+  api_secret:process.env.CLOUDINARY_API_SECRET
+
+})
 
 mongoose.set('debug', true);
 mongoose.connect(process.env.MONGODB_CONNECTION_STRING as string)
@@ -34,6 +43,12 @@ app.use(express.static(path.join(__dirname,"","../../frontend/dist")))
 
 app.use("/api/users",userRouter)
 app.use("/api/auth",userRoutes)
+app.use('/api/my-hotels', myHotelsRoutes)
+
+app.get("*",(req:Request,res:Response)=>{
+  res.sendFile(path.join(__dirname,"../../frontend/dist/index/index.html"))
+
+})
 
 app.listen(3000,()=>{
     console.log('server is running')
