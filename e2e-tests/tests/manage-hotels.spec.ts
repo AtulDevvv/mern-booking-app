@@ -44,3 +44,23 @@ test("should allow user to add a hotel", async ({page})=>{
 
     await expect(page.getByText('Hotel Saved!')).toBeVisible({ timeout: 10000 });
 })
+
+test("should display hotels", async ({ page})=>{
+    await page.goto(`${UI_URL}my-hotels`);
+
+    await page.waitForLoadState('networkidle'); 
+
+    await expect(page.getByText('test hotel ')).toBeVisible();
+    await expect(page.getByText("Ensure that the page")).toBeVisible();
+
+    await expect(page.getByText("test city,test country")).toBeVisible();
+ 
+    await expect(page.getByText("Luxury")).toBeVisible();
+    await expect(page.getByText("Rs. 1111 Per night")).toBeVisible();
+    await expect(page.getByText("2 adults, 2 children")).toBeVisible();
+    await expect(page.getByText("3 Star Rating")).toBeVisible();
+
+    await  expect(page.getByRole("link",{name:"view Details"})).toBeVisible();
+    await  expect(page.getByRole("link",{name:"Add Hotel"})).toBeVisible();
+
+})

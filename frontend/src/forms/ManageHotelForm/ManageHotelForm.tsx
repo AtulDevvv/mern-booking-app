@@ -36,7 +36,7 @@ function ManageHotelForm({onSave,isLoading}:Props) {
    formData.append("city",formDataJson.city)
    formData.append("country",formDataJson.country)
    formData.append("description",formDataJson.description)
-   formData.append("type",formDataJson.name)
+   formData.append("type",formDataJson.type)
    formData.append("pricePerNight",formDataJson.pricePerNight.toString())
    formData.append("starRating",formDataJson.starRating.toString())
    formData.append("adultCount",formDataJson.adultCount.toString())

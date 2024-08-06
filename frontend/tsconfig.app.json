@@ -23,5 +23,11 @@
     "noUnusedParameters": true,
     "noFallthroughCasesInSwitch": true
   },
-  "include": ["src"]
+
+  "include": [
+    "src/**/*",  // Include all TypeScript files in the frontend src directory
+    "../Bakend/src/shared/types.ts"  // Include the specific hotel.ts file from the backend
+  ],
+ 
+ 
 }

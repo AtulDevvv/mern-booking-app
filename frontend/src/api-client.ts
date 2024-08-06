@@ -1,6 +1,8 @@
 import { FormValues } from "./pages/Register"
 import { SignInFormData } from "./pages/SignIn";
 
+import {HotelTypes} from "../../Bakend/src/shared/types";
+
 const API_BASE_URL= import.meta.env.VITE_API_BASE_URL || '';
 export const regsiter =async (formData:FormValues)=>{
     const response=await fetch(`${API_BASE_URL}/api/users/register`,{
@@ -76,4 +78,15 @@ if(!response.ok){
 }
 return response.json();
 
+}
+
+export const fetchMyHotels=async ():Promise<HotelTypes[]>=>{
+     const response= await fetch(`${API_BASE_URL}/api/my-hotels`,{
+        credentials:"include",
+
+     });
+      if(!response.ok){
+        throw new Error(" Error fecthing hotels")
+      }
+      return response.json();
 }
