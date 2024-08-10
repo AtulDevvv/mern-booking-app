@@ -16,3 +16,14 @@ export type HotelTypes={
 
 
  }
+ export type HotelSearchResponse={
+    data:HotelTypes[];
+    pagination:{
+        total:number,
+        page:number,
+        pages:number,
+        
+    }
+
+
+ }
