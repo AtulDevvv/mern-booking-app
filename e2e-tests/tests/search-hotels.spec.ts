@@ -60,7 +60,10 @@ test("sholud book hotel",async({page})=>{
       await stripeFrame.locator('[placeholder="CVC"]').fill("200")
       await stripeFrame.locator('[placeholder="ZIP"]').fill("51001");
       await page.getByRole("button",{name:"Confirm Booking"}).click()
-      await expect(page.getByText("Booking Saved!")).toBeVisible({ timeout: 10000 });
+      await expect(page.getByText("Booking Saved!")).toBeVisible();
+
+      await page.getByRole("link",{name:"My Bookings"}).click();
+      await expect(page.getByText("The Grand Horizon")).toBeVisible();
 
       
 })

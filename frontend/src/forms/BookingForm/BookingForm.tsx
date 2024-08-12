@@ -51,7 +51,7 @@ function BookingForm({ currentUser, paymentIntent }: Props) {
             childCount: search.childCount,
             checkIn: search.checkIn.toISOString(),
             checkOut: search.checkOut.toISOString(),
-            hotelId: hotelId!,
+            hotelId: hotelId,
             totalCost: paymentIntent.totalCost,
             paymentIntentId: paymentIntent.paymentIntentId,
         },
@@ -65,11 +65,7 @@ function BookingForm({ currentUser, paymentIntent }: Props) {
 
         const cardElement = elements.getElement(CardElement) as StripeCardElement;
 
-        if (!cardElement) {
-            showToast({ message: "Could not find Card Element.", type: "ERROR" });
-            return;
-        }
-
+        
         const result = await stripe.confirmCardPayment(paymentIntent.clientSecret, {
             payment_method: {
                 card: cardElement,
@@ -82,7 +78,9 @@ function BookingForm({ currentUser, paymentIntent }: Props) {
         }
 
         if (result.paymentIntent?.status === "succeeded") {
-            bookRoom({ ...formData, paymentIntentId: result.paymentIntent.id });
+            console.log(formData)
+            console.log(result)
+            bookRoom({...formData, paymentIntentId: result.paymentIntent.id });
         } else {
             showToast({ message: "Payment was not successful.", type: "ERROR" });
         }

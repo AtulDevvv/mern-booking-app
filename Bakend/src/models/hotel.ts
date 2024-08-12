@@ -81,7 +81,7 @@ import mongoose from "mongoose";
         max:5
 
     },
-    bookings:{bookingSchema}
+    bookings:[bookingSchema]
 
 
  });
