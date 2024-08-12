@@ -1,9 +1,23 @@
 import { FormValues } from "./pages/Register"
 import { SignInFormData } from "./pages/SignIn";
+import { PaymentIntentResponse, UserType } from "../../Bakend/src/shared/types";
 
 import {HotelSearchResponse, HotelTypes} from "../../Bakend/src/shared/types";
+import { BookingFormData } from "./forms/BookingForm/BookingForm";
 
 const API_BASE_URL= import.meta.env.VITE_API_BASE_URL || '';
+
+ export const  fetchCurrentUser= async():Promise<UserType>=>{
+    const response= await fetch(`${API_BASE_URL}/api/users/me`,{
+        credentials:"include",
+
+    })
+    if(!response.ok){
+        throw new Error("Errror fecthing user")
+    }
+
+    return response.json();
+ }
 export const regsiter =async (formData:FormValues)=>{
     const response=await fetch(`${API_BASE_URL}/api/users/register`,{
         method:"POST",
@@ -156,4 +170,45 @@ if(!response){
 }
 return response.json();
 
+}
+
+export const fetchHotelById= async (hotelId:string):Promise<HotelTypes>=>{
+    const response=await fetch(`${API_BASE_URL}/api/hotels/${hotelId}`);
+    if(!response.ok){
+        throw new Error("Error fecthing Hotels")
+
+    }
+    return response.json();
+
+}
+
+export const createPaymentIntent= async(hotelId:string,numberOfNights:string):Promise<PaymentIntentResponse>=>{
+    const response =await fetch(`${API_BASE_URL}/api/hotels/${hotelId}/bookings/payment-intent`,{
+        credentials:"include",
+        method:"POST",
+        body:JSON.stringify({numberOfNights}),
+        headers:{
+            "Content-type":"application/json",
+        }
+
+    })
+    if(!response.ok){
+        throw new Error ("Error fecthing payment intent")
+    }
+    return response.json();
+}
+
+export const createRoomBooking= async (formData:BookingFormData)=>{
+    const respone= await fetch(`${API_BASE_URL}/api/hotels/${formData.hotelId}/bookings`,{
+        method:"POST",
+        headers:{
+            "Content-Type":"application/json"
+        },
+        credentials:"include",
+        body:JSON.stringify(formData)
+    })
+    if(!respone.ok){
+        throw new Error(" Error booking Room ")
+    }
+    console.log("yews i'm running")
 }

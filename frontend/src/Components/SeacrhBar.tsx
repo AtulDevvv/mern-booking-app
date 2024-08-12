@@ -75,7 +75,7 @@ function SearchBar() {
                     endDate={checkOut}
                     minDate={minDate}
                     maxDate={maxDate}
-                    placeholderText="check in date"
+                    placeholderText="check out date"
                       wrapperClassName="min-w-full"
                     />
              </div>
