@@ -2,7 +2,7 @@ import { useQuery } from "react-query";
 import { useParams } from "react-router-dom";
 import * as apiClient from "./../api-client"
 import { AiFillStar } from "react-icons/ai";
-import FacilitiesFilter from "../Components/FacilitiesFilter";
+
 import GuestInfo from "../forms/GuestInfoForm/GuestInfo";
 
 function Details() {
