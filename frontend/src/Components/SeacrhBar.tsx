@@ -43,12 +43,12 @@ function SearchBar() {
         />
     </div>
     <div className="flex bg-white px-2 py-1 gap-4">
-        <label className="items-center flex">
-            Adult:
+        <label className="items-center flex flex-col lg:flex-row">
+            <span>Adult:</span>
             <input type="number"  className="w-full p-1 focus:outline-none font-bold " min={1}
             max={20} value={adultCount} onChange={(e)=>setAdultCount(parseInt(e.target.value))}/>
             </label>
-        <label className="items-center flex">
+            <label className="items-center flex flex-col lg:flex-row">
             Children:
             <input type="number"  className="w-full p-1 focus:outline-none font-bold " min={1}
             max={20} value={childCount} onChange={(e)=>setChildCount(parseInt(e.target.value))}/>
@@ -81,13 +81,14 @@ function SearchBar() {
              </div>
 
              <div className="flex gap-2">
-                <button className="w-2/4 bg-blue-500 p-2 text-white h-full font-bold text-xl hover:bg-blue-700 ">
-                Search
-                </button>
-                <button className="w-2/4 bg-red-500 p-2 text-white h-full font-bold text-xl hover:bg-red-700 ">
-            Clear
-                </button>
-             </div>
+    <button className="w-full md:w-1/2 bg-blue-500 text-white py-3 px-4 font-bold text-lg rounded-lg shadow-md hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-300 transition duration-300">
+        Search
+    </button>
+    <button className="w-full md:w-1/2 bg-red-500 text-white py-3 px-4 font-bold text-lg rounded-lg shadow-md hover:bg-red-600 focus:outline-none focus:ring-2 focus:ring-red-300 transition duration-300">
+        Clear
+    </button>
+</div>
+
            
      
 
